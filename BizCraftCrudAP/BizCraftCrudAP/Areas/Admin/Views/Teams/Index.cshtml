@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Team>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <a asp-action="Create" class="btn btn-outline-primary btn-lg">
+        Create New Team
+    </a>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Facebook Logo</th>
+                <th scope="col">Twitter Logo</th>
+                <th scope="col">Google Logo</th>
+                <th scope="col">Linkedin Logo</th>
+                <th scope="col">Other Logo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var teamadm in Model)
+            {
+                <tr class="bg-dark">
+                    <th scope="row">@teamadm.Id</th>
+                    <td> <img src="~/images/team/@teamadm.Image" width="50"></td>
+                    <td>@Html.Raw(teamadm.Fullname)</td>
+                    <td>@Html.Raw(teamadm.Position)</td>
+                    <td>@Html.Raw(teamadm.Facelogo)</td>
+                    <td>@Html.Raw(teamadm.Twitlogo)</td>
+                    <td>@Html.Raw(teamadm.Googlogo)</td>
+                    <td>@Html.Raw(teamadm.Linkelogo)</td>
+                    <td>@Html.Raw(teamadm.Otherlogo)</td>
+                    <td>
+                        <div class="d-flex">
+                            <a asp-action="Edit" asp-route-id="@teamadm.Id" class="btn btn-info">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@teamadm.Id" class="btn btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
